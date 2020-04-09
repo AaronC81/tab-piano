@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+    <title>Tab Piano</title>
+    <style>
+        body, html {
+            padding: 20px;
+            font-size: 1.2em;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #note {
+            display: none;
+            margin: 0 auto;
+            padding-top: 50px;
+            font-size: 3em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id='content'>
+        <h1>Tab Piano</h1>
+        How to use:
+        <ol>
+            <li>
+                <a href='?note=C'>Middle</a>
+                <a href='?note=D'>click</a>
+                <a href='?note=E'>on</a>
+                <a href='?note=F'>all</a>
+                <a href='?note=G'>of</a>
+                <a href='?note=A'>these</a>
+                <a href='?note=B'>links</a>
+                in order, to open each note as a new tab</li>
+            <li>Play music by switching to tabs!</li>
+        </ol>
+        <small>Wondering how this works? Check it out on <a href='https://github.com/AaronC81/tab-piano'>GitHub</a>!</small>
+    </div>
+    <div id='note'></div>
+
+    <script src='vendor/audiosynth.js'></script>
+    <script>
+        // Create the AudioSynth instrument
+        const piano = Synth.createInstrument('piano');
+
+        // Extract the note from URL parameters, and display the relevant text
+        const noteMatch = window.location.href.match(/\?note=(.)/);
+        const note = noteMatch ? noteMatch[1] : null;
+        if (note) {
+            document.title = note;
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('note').style.display = 'block';
+            document.getElementById('note').innerText = note;
+        }
+
+        // When this tab comes into view, play a piano note
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && note) piano.play(note, 4, 2);
+        });
+    </script>
+</body>
+</html>
