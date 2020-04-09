@@ -43,6 +43,13 @@
 
     <script src='vendor/audiosynth.js'></script>
     <script>
+        // Insert a step on Firefox
+        if (navigator.userAgent.search("Firefox") >= 0) {
+            const newLi = document.createElement("li");
+            newLi.appendChild(document.createTextNode("Looks like you're using Firefox, so grant this page autoplay permissions."));
+            document.getElementsByTagName("ol").item(0).prepend(newLi);
+        }
+
         // Create the AudioSynth instrument
         const piano = Synth.createInstrument('piano');
 
