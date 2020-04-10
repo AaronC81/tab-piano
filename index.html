@@ -34,7 +34,8 @@
                 <a href='?note=G'>of</a>
                 <a href='?note=A'>these</a>
                 <a href='?note=B'>links</a>
-                in order, to open each note as a new tab</li>
+                in order, to open each note as a new tab.<br>
+                (If your pop-up blocker is off, you can also <a href="#" onclick="openAll();">click here</a> to open all tabs.)</li>
             <li>Play music by switching to tabs!</li>
         </ol>
         <p>
@@ -48,6 +49,11 @@
 
     <script src='vendor/audiosynth.js'></script>
     <script>
+        function openAll() {
+            ['C', 'D', 'E', 'F', 'G', 'B', 'A'].forEach(note => 
+                window.open(`${window.location.href}?note=${note}`, '_blank'));
+        }
+
         // Insert a step on Firefox
         if (navigator.userAgent.search("Firefox") >= 0) {
             const newLi = document.createElement("li");
