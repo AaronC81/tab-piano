@@ -28,13 +28,18 @@
         <ol>
             <li>
                 <a href='?note=C'>Middle</a>
-                <a href='?note=D'>click</a>
-                <a href='?note=E'>on</a>
-                <a href='?note=F'>all</a>
-                <a href='?note=G'>of</a>
-                <a href='?note=A'>these</a>
-                <a href='?note=B'>links</a>
-                in order, to open each note as a new tab.<br>
+                <a href='?note=C#'>click</a>
+                <a href='?note=D'>on</a>
+                <a href='?note=D#'>all</a>
+                <a href='?note=E'>of</a>
+                <a href='?note=F'>these</a>
+                <a href='?note=F#'>links</a>
+                <a href='?note=G'>in</a>
+                <a href='?note=G#'>order</a>
+                <a href='?note=A'>to</a>
+                <a href='?note=A#'>open</a>
+                <a href='?note=B'>notes</a>
+                as new tabs.<br>
                 (If your pop-up blocker is off, you can also <a href="#" onclick="openAll();">click here</a> to open all tabs.)</li>
             <li>Play music by switching to tabs!</li>
         </ol>
@@ -50,7 +55,7 @@
     <script src='vendor/audiosynth.js'></script>
     <script>
         function openAll() {
-            ['C', 'D', 'E', 'F', 'G', 'A', 'B'].forEach(note => 
+            ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'].forEach(note => 
                 window.open(`${window.location.href}?note=${note}`, '_blank'));
         }
 
@@ -65,7 +70,7 @@
         const piano = Synth.createInstrument('piano');
 
         // Extract the note from URL parameters, and display the relevant text
-        const noteMatch = window.location.href.match(/\?note=(.)/);
+        const noteMatch = window.location.href.match(/\?note=(.#?)/);
         const note = noteMatch ? noteMatch[1] : null;
         if (note) {
             document.title = note;
