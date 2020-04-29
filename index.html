@@ -19,7 +19,11 @@
             font-size: 3em;
             text-align: center;
         }
-    </style>
+
+        #note-links-notes {
+            display: none;
+        }
+        </style>
 </head>
 <body>
     <div id='content'>
@@ -27,22 +31,43 @@
         How to use:
         <ol>
             <li>
-                <a href='?note=C'>Middle</a>
-                <a href='?note=C#'>click</a>
-                <a href='?note=D'>on</a>
-                <a href='?note=D#'>all</a>
-                <a href='?note=E'>of</a>
-                <a href='?note=F'>these</a>
-                <a href='?note=F#'>links</a>
-                <a href='?note=G'>in</a>
-                <a href='?note=G#'>order</a>
-                <a href='?note=A'>to</a>
-                <a href='?note=A#'>open</a>
-                <a href='?note=B'>notes</a>
-                as new tabs.<br>
+                <span id="note-links-words">
+                    <a class="note-link" href='?note=C'>Middle</a>
+                    <a class="note-link" href='?note=C#'>click</a>
+                    <a class="note-link" href='?note=D'>on</a>
+                    <a class="note-link" href='?note=D#'>all</a>
+                    <a class="note-link" href='?note=E'>of</a>
+                    <a class="note-link" href='?note=F'>these</a>
+                    <a class="note-link" href='?note=F#'>links</a>
+                    <a class="note-link" href='?note=G'>in</a>
+                    <a class="note-link" href='?note=G#'>order</a>
+                    <a class="note-link" href='?note=A'>to</a>
+                    <a class="note-link" href='?note=A#'>open</a>
+                    <a class="note-link" href='?note=B'>notes</a>
+                    as new tabs.<br>
+                </span>
+                <span id="note-links-notes">
+                    <a class="note-link" href='?note=C'>C</a>
+                    <a class="note-link" href='?note=C#'>C#</a>
+                    <a class="note-link" href='?note=D'>D</a>
+                    <a class="note-link" href='?note=D#'>D#</a>
+                    <a class="note-link" href='?note=E'>E</a>
+                    <a class="note-link" href='?note=F'>F</a>
+                    <a class="note-link" href='?note=F#'>F#</a>
+                    <a class="note-link" href='?note=G'>G</a>
+                    <a class="note-link" href='?note=G#'>G#</a>
+                    <a class="note-link" href='?note=A'>A</a>
+                    <a class="note-link" href='?note=A#'>A#</a>
+                    <a class="note-link" href='?note=B'>B</a>
+                    <br>
+                </span>
                 (If your pop-up blocker is off, you can also <a href="#" onclick="openAll();">click here</a> to open all tabs.)</li>
             <li>Play music by switching to tabs!</li>
         </ol>
+        <p>
+            <small><a href="#" onclick="toggleNoteDisplay();" id="note-toggle-link">Show notes</a></small>
+            <small id="note-toggle-desc">if you want more control over your tabs.</small>
+        </p>
         <p>
             <small>This works best on <b>desktop Chrome</b>.</small>
         </p>
@@ -83,6 +108,23 @@
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden && note) piano.play(note, 4, 2);
         });
+
+        var showingNotes = false;
+        function toggleNoteDisplay() {
+            if (!showingNotes) {
+                document.getElementById('note-links-notes').style.display = 'inline';
+                document.getElementById('note-links-words').style.display = 'none';
+                document.getElementById('note-toggle-desc').style.display = 'none';
+                document.getElementById('note-toggle-link').innerText = 'Show words';
+            } else {
+                document.getElementById('note-links-notes').style.display = 'none';
+                document.getElementById('note-links-words').style.display = 'inline';
+                document.getElementById('note-toggle-desc').style.display = 'inline';
+                document.getElementById('note-toggle-link').innerText = 'Show notes';
+            }
+
+            showingNotes = !showingNotes;
+        }
     </script>
 </body>
 </html>
